@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Canvas</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1 class="title">My Canvas</h1>
+		<canvas id="c" width="200" height="200"></canvas>
+		<script>
+			var c = document.querySelector("#c");
+			var ctx = c.getContext("2d");
+
+			ctx.fillStyle = "blue";
+			//Starter ved (0,0) og lager en blå 50x50 rectangel
+			ctx.fillRect(0,0,50,50);
+			//Start ved (0,0) og fjerner 25x25 rectangel
+			ctx.clearRect(0,0,25,25);
+		</script>
+	</body>
+</html>
