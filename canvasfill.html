@@ -7,16 +7,43 @@
 	</head>
 	<body>
 		<h1 class="title">My Canvas</h1>
-		<canvas id="c" width="200" height="200"></canvas>
+		<canvas id="c" width="500" height="500"></canvas>
 		<script>
 			var c = document.querySelector("#c");
 			var ctx = c.getContext("2d");
 
-			ctx.fillStyle = "blue";
+			ctx.fillStyle = "black";
 			//Starter ved (0,0) og lager en blå 50x50 rectangel
-			ctx.fillRect(0,0,50,50);
+			//ctx.fillRect(0,0,50,50);
 			//Start ved (0,0) og fjerner 25x25 rectangel
-			ctx.clearRect(0,0,25,25);
+			//ctx.clearRect(0,0,25,25);
+			//ctx.translate(40,20);
+			ctx.scale(2,3);
+			ctx.strokeRect(50,50,100,100);
+			//Start trekant
+			ctx.beginPath();
+			//ctx.rotate(-0.3);  //Roterer rundt (0,0)
+			ctx.moveTo(75,75);
+			ctx.lineTo(125,125);
+			ctx.lineTo(125,75);
+			ctx.lineTo(75,75);
+			ctx.shadowColor = "#999";
+			ctx.shadowOffsetX = 10;
+			ctx.shadowOffsetY = 10;
+			ctx.shadowBlur = 4;
+			ctx.fill();
+			ctx.save();
+			ctx.shadowOffsetX = 0;
+			ctx.shadowOffsetY = 0;
+			ctx.shadowBlur = 0;
+			ctx.font = "36pt Impact";
+			ctx.textAlign = "center";
+			ctx.lineWidth = 3;
+			ctx.fillStyle = "white"
+			ctx.fillText("CANVAS MEMES!", c.width / 2, 80);
+
+			ctx.strokeStyle = "black"
+			ctx.strokeText("CANVAS MEMES!", c.width / 2, 80);
 		</script>
 	</body>
 </html>
