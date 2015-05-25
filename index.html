@@ -7,5 +7,21 @@
 	</head>
 	<body>
 		<h1 class="title">My Canvas</h1>
+		<canvas id="c" width="200" height="200"></canvas>
+		<script>
+			var c = document.querySelector("#c");
+			var ctx = c.getContext("2d");
+
+			var image = new Image();
+			image.crossOrigin="anonymous";
+
+			image.onload = function() {
+				console.log("Loaded image");
+				ctx.drawImage(image, 0, 0, c.width, c.height);
+				var saved = c.toDataURL();
+				window.open(saved);
+			}
+			image.src = "200.png";
+		</script>
 	</body>
 </html>
