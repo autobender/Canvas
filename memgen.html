@@ -47,27 +47,41 @@
       // Get Canvas2DContext
       var canvas = document.querySelector('canvas');
       var ctx = canvas.getContext("2d");
-      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      if (image!=null)
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
       ctx.font = "36pt Impact";
       ctx.textAlign = "center";
       ctx.lineWidth = 3;
       ctx.fillStyle = "white"
       ctx.strokeStyle = "black"
-      if (topLine === null){
-
-      } else {
-        ctx.fillText(topLine, canvas.width / 2, 80);
-        ctx.strokeText(topLine, canvas.width / 2, 80);
+      if (topLine != null){
+        ctx.fillText(topLine, canvas.width / 2, 40);
+        ctx.strokeText(topLine, canvas.width / 2, 40);
       }
-      if (bottomLine === null) {
-
-      }else {
+      if (bottomLine != null) {
         ctx.textBaseline = "bottom";
         console.log(canvas.height);
-        ctx.fillText(bottomLine, canvas.width / 2, canvas.height);
-        ctx.strokeText(bottomLine, canvas.width / 2, canvas.height);
+        ctx.fillText(bottomLine, canvas.width / 2, canvas.height - 20);
+        ctx.strokeText(bottomLine, canvas.width / 2, canvas.height - 20);
       }
-
+      ImgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      console.log(ImgData["data"]);
+      ImgLength = ImgData["data"].length / 4;
+      for (var i = 0; i < ImgLength; i++) {
+          var grayScale = ImgData["data"][i * 4] * 0.3 + ImgData["data"][i * 4 + 1] * 0.59 + ImgData["data"][i * 4 + 2] * 0.11;
+          ImgData["data"][i * 4] = grayScale;
+          ImgData["data"][i * 4 + 1] = grayScale;
+          ImgData["data"][i * 4 + 2] = grayScale;
+          ImgData["data"][i * 4 + 3] = 255;
+          
+        //console.log("Inni everyTen loop");
+        
+        //for (x in i) {
+          //console.log("ImgaData2" + " " + x);
+        //}
+      }
+      ctx.putImageData(ImgData, 0, 0);
+      console.log(ImgData);
     }
     
     function saveFile() {
